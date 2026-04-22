@@ -24,7 +24,10 @@
     <ClCompile Include="Scenes\Demo\DemoScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\A_DTS\DTS.cpp">
+    <ClCompile Include="Scenes\A_DTS\DTScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scenes\A_DTS\DTSMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,10 +41,13 @@
     <ClInclude Include="include\A_DTS\PlayerDTS.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\A_DTS\DTS.h">
+    <ClInclude Include="Scenes\A_DTS\DTScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\A_DTS\ProjectilesDTS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\A_DTS\DTSMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

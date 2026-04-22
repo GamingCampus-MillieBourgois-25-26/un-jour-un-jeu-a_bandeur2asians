@@ -97,14 +97,16 @@
   <ItemGroup>
     <ClCompile Include="include\Demo\Tile.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Scenes\A_DTS\DTS.cpp" />
+    <ClCompile Include="Scenes\A_DTS\DTScene.cpp" />
+    <ClCompile Include="Scenes\A_DTS\DTSMap.cpp" />
     <ClCompile Include="Scenes\Demo\DemoScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\A_DTS\PlayerDTS.h" />
     <ClInclude Include="include\A_DTS\ProjectilesDTS.h" />
     <ClInclude Include="include\Demo\Tile.h" />
-    <ClInclude Include="Scenes\A_DTS\DTS.h" />
+    <ClInclude Include="Scenes\A_DTS\DTScene.h" />
+    <ClInclude Include="Scenes\A_DTS\DTSMap.h" />
     <ClInclude Include="Scenes\Demo\DemoScene.h" />
   </ItemGroup>
   <ItemGroup>
