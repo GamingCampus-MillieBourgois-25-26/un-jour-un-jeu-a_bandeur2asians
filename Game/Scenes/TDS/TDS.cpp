@@ -15,6 +15,10 @@
 
 TDS::TopDownShooter::TopDownShooter() : Scene("TopDownShooter")
 {
+    WindowModule* window = Engine::GetInstance()->GetModuleManager()->GetModule<WindowModule>();
+    window->SetSize({ 1280, 960 });
+    window->SetTitle("Top Down Shooter");
+
     AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
 
     // Map visuelle

@@ -93,7 +93,7 @@ namespace TDS
                 float dy = static_cast<float>(mousePos.y) - finalPos.y;
 
                 AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
-                Texture* projectile_texture = assets_module->LoadAsset<Texture>("A_Game1_Projectile.png");
+                Texture* projectile_texture = assets_module->LoadAsset<Texture>("TDS_Projectile.png");
 
                 GameObject* projectile = GetOwner()->GetScene()->CreateGameObject("Projectile");
                 projectile->SetPosition(finalPos);
