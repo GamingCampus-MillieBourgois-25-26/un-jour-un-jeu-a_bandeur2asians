@@ -9,8 +9,6 @@ namespace TETRIS
     public:
         TetrisScene();
 
-        void CreateRandomTile();
-
         float minSize = 100.f;
         float maxSize = 300.f;
     };
