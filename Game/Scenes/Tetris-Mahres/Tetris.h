@@ -8,10 +8,8 @@ namespace TETRIS
     {
     public:
         TetrisScene();
+        void SpawnPiece();
 
-
-    private:
-		void SpawnPiece();
 
     };
 }

@@ -3,8 +3,10 @@
 #include "Core/Component.h"
 #include "InputModule.h"
 #include "WindowModule.h"
+
 #include <cmath>
 #include <array>
+#include <random>
 
 namespace TETRIS
 {
@@ -17,6 +19,7 @@ namespace TETRIS
             Maths::Vector2u windowSize = window->GetSize();
             m_windowWidth = static_cast<float>(windowSize.x);
             m_windowHeight = static_cast<float>(windowSize.y);
+
         }
 
         void Update(const float _delta_time) override
@@ -24,13 +27,16 @@ namespace TETRIS
             Maths::Vector2<float> position = GetOwner()->GetPosition();
 
             if (InputModule::GetKeyDown(sf::Keyboard::Key::D))
-                position.x += cellSize;
+                if (position.x + cellSize < m_windowWidth && !m_grid[(int)(position.y / cellSize)][(int)(position.x / cellSize) + 1])
+                    position.x += cellSize;
 
             if (InputModule::GetKeyDown(sf::Keyboard::Key::Q))
-                position.x -= cellSize;
+                if (position.x - cellSize >= 0.f && !m_grid[(int)(position.y / cellSize)][(int)(position.x / cellSize) - 1])
+                    position.x -= cellSize;
 
             if (InputModule::GetKeyDown(sf::Keyboard::Key::S))
-                position.y += cellSize;
+                if (position.y + cellSize < m_windowHeight && !m_grid[(int)(position.y / cellSize) + 1][(int)(position.x / cellSize)])
+                    position.y += cellSize;
 
             if (InputModule::GetKeyDown(sf::Keyboard::Key::R))
             {
@@ -56,7 +62,9 @@ namespace TETRIS
                     ResetGame();
 
                 GetOwner()->SetPosition(position);
-            
+
+                if (m_pendingDestroy)
+                    GetOwner()->GetScene()->DestroyGameObject(GetOwner());
         }
 
             float cellSize = 32.0f;
@@ -71,10 +79,13 @@ namespace TETRIS
             float m_windowWidth = 600.f;
             float m_windowHeight = 600.f;
 
+            bool m_pendingDestroy = false;
+
+
             // Grille partagée entre toutes les pièces
             static inline bool m_grid[20][10] = {};
 
-            void LockPiece(const Maths::Vector2<float>&position)
+            void LockPiece(const Maths::Vector2<float>& position)
             {
                 int gridX = static_cast<int>(position.x / cellSize);
                 int gridY = static_cast<int>(position.y / cellSize);
@@ -86,8 +97,12 @@ namespace TETRIS
                     m_grid[gridY][gridX] = true;
 
                 ClearLines();
-                m_needsNewPiece = true;
+
+                Disable();
+                static_cast<TETRIS::TetrisScene*>(GetOwner()->GetScene())->SpawnPiece();
+
             }
+
 
             void ClearLines()
             {
@@ -126,5 +141,8 @@ namespace TETRIS
 
                 m_needsNewPiece = true;
             }
+
+            
+
     };
 }
