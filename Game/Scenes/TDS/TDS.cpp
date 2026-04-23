@@ -10,6 +10,8 @@
 #include "WindowModule.h"
 #include <TDS/Player.h>
 #include <TDS/Background.h>
+#include <TDS/Enemy.h>
+#include <TDS/Health.h>
 
 TDS::TopDownShooter::TopDownShooter() : Scene("TopDownShooter")
 {
@@ -31,4 +33,18 @@ TDS::TopDownShooter::TopDownShooter() : Scene("TopDownShooter")
     SquareCollider* pc = playerObject->CreateComponent<SquareCollider>();
     pc->SetWidth(64.f);
     pc->SetHeight(64.f);
+
+
+    Texture* enemyTexture = assets_module->LoadAsset<Texture>("Enemy.png");
+    for (int i = 0; i < 3; i++)
+    {
+        GameObject* enemy = CreateGameObject("Enemy");
+        enemy->SetPosition(TDS::GetRandomSpawnPos());
+        enemy->CreateComponent<SpriteRenderer>(enemyTexture);
+        enemy->CreateComponent<TDS::Enemy>();
+        enemy->CreateComponent<TDS::Health>(100.f);
+    }
+
+    // Health du joueur
+    playerObject->CreateComponent<TDS::Health>(100.f);
 }

@@ -65,5 +65,11 @@
     <ClInclude Include="include\TDS\Background.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\TDS\Enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TDS\Health.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

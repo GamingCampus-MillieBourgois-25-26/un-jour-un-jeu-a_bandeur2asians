@@ -107,6 +107,8 @@
     <ClInclude Include="include\A_DTS\PlayerDTS.h" />
     <ClInclude Include="include\A_DTS\ProjectilesDTS.h" />
     <ClInclude Include="include\Demo\Tile.h" />
+    <ClInclude Include="include\TDS\Enemy.h" />
+    <ClInclude Include="include\TDS\Health.h" />
     <ClInclude Include="include\TDS\Player.h" />
     <ClInclude Include="include\TDS\Projectile.h" />
     <ClInclude Include="Scenes\A_DTS\DTScene.h" />
