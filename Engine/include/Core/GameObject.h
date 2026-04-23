@@ -13,9 +13,6 @@ class Component;
 class GameObject
 {
 public:
-    GameObject() = default;
-    ~GameObject();
-
     std::string GetName() const;
 
     Maths::Vector2<float> GetPosition() const;
@@ -28,7 +25,7 @@ public:
 
     void SetPosition(const Maths::Vector2<float>& _position);
 
-    void SetRotation(const sf::Angle _rotation);
+    void SetRotation(sf::Angle _rotation);
 
     void SetScale(const Maths::Vector2<float>& _scale);
 
@@ -52,11 +49,13 @@ public:
     void OnDebugSelected() const;
     void Present();
 
+    void FlushPending();
+
     void OnEnable() const;
     void OnDisable() const;
 
     void Destroy() const;
-    void Finalize() const;
+    void Finalize();
 
     void Enable();
     void Disable();
@@ -79,6 +78,7 @@ private:
     Maths::Vector2<float> scale = Maths::Vector2f::One;
 
     std::vector<std::unique_ptr<Component>> components;
+    std::vector<std::unique_ptr<Component>> pendingComponents;
 
     Scene* scene = nullptr;
 
