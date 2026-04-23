@@ -76,7 +76,7 @@ namespace Tetris
                 m_fallInterval = 0.05f;
             else
                 m_fallInterval = 0.5f;
-
+            
             // Chute automatique
             m_fallTimer += _delta_time;
             if (m_fallTimer >= m_fallInterval)
@@ -88,6 +88,7 @@ namespace Tetris
 
             RefreshVisuals();
         }
+        float angleRotation = 90.0f;
 
     private:
         int   m_grid[ROWS][COLS];

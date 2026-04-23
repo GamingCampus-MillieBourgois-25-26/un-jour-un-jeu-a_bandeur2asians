@@ -101,8 +101,8 @@
     <ClCompile Include="Scenes\A_DTS\DTScene.cpp" />
     <ClCompile Include="Scenes\Demo\DemoScene.cpp" />
     <ClCompile Include="Scenes\TDS\TDS.cpp" />
-    <ClCompile Include="Scenes\TETRIS_Nolan\Tetris.cpp" />
     <ClCompile Include="Scenes\Tetris-Mahres\Tetris.cpp" />
+    <ClCompile Include="Scenes\TETRIS_Nolan\Tetris.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\TDS\Background.h" />
@@ -113,6 +113,7 @@
     <ClInclude Include="include\TDS\Health.h" />
     <ClInclude Include="include\TDS\Player.h" />
     <ClInclude Include="include\TDS\Projectile.h" />
+    <ClInclude Include="include\Tetris-Mahres\PlayerTetris.h" />
     <ClInclude Include="include\TETRIS_Nolan\TetrisGame.h" />
     <ClInclude Include="Scenes\A_DTS\DTScene.h" />
     <ClInclude Include="include\A_DTS\DTSMap.h" />
@@ -120,6 +121,8 @@
     <ClInclude Include="include\Demo\TileSpawner.h" />
     <ClInclude Include="Scenes\Demo\DemoScene.h" />
     <ClInclude Include="Scenes\TDS\TDS.h" />
+    <ClInclude Include="Scenes\Tetris-Mahres\Tetris.h" />
+    <ClInclude Include="Scenes\TETRIS_Nolan\Tetris.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">

@@ -2,7 +2,7 @@
 
 #include "Core/Scene.h"
 
-namespace Tetris
+namespace Tetris_Nolan
 {
     class TetrisScene final : public Scene
     {

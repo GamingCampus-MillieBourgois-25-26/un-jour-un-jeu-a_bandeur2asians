@@ -2,7 +2,7 @@
 #include "TETRIS_Nolan/TetrisGame.h"
 #include "WindowModule.h"
 
-Tetris::TetrisScene::TetrisScene() : Scene("Tetris")
+Tetris_Nolan::TetrisScene::TetrisScene() : Scene("Tetris")
 {
     WindowModule* window = Engine::GetInstance()->GetModuleManager()->GetModule<WindowModule>();
     window->SetSize({ 640u, 680u });
