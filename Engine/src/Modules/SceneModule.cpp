@@ -4,27 +4,12 @@
 
 #include "ModuleManager.h"
 
-SceneModule::SceneModule() : Module()
-{
-}
-
-SceneModule::~SceneModule()
-{
-    DeleteAllScenes();
-    DeleteMarkedScenes();
-}
-
 void SceneModule::Start()
 {
     Module::Start();
 
     timeModule = moduleManager->GetModule<TimeModule>();
     windowModule = moduleManager->GetModule<WindowModule>();
-
-    for (const auto& scene : scenes)
-    {
-        scene->Start();
-    }
 }
 
 void SceneModule::Render()
@@ -50,11 +35,6 @@ void SceneModule::Update()
 void SceneModule::Awake()
 {
     Module::Awake();
-
-    for (const auto& scene : scenes)
-    {
-        scene->Awake();
-    }
 }
 
 void SceneModule::Destroy()
@@ -75,6 +55,9 @@ void SceneModule::Finalize()
     {
         scene->Finalize();
     }
+
+    DeleteAllScenes();
+    DeleteMarkedScenes();
 }
 
 void SceneModule::OnDebug()
@@ -155,8 +138,6 @@ void SceneModule::Present()
     {
         scene->Present();
     }
-
-    DeleteMarkedScenes();
 }
 
 const std::vector<std::unique_ptr<Scene>>& SceneModule::GetScenesList() const
