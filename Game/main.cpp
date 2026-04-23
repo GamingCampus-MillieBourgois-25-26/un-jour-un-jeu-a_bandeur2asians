@@ -2,6 +2,9 @@
 #include "SceneModule.h"
 #include "Scenes/A_DTS/DTScene.h"
 #include "Scenes/TDS/TDS.h"
+#include "Scenes/Tetris-Mahres/Tetris.h"
+
+
 
 int main(const int _argc, const char** _argv)
 {
@@ -9,7 +12,17 @@ int main(const int _argc, const char** _argv)
 
     engine->Init(_argc, _argv);
 
-    engine->GetModuleManager()->GetModule<SceneModule>()->SetScene<TDS::TopDownShooter>();
+    SceneModule* sceneModule = engine->GetModuleManager()->GetModule<SceneModule>();
+
+    // Crée toutes les scènes sans les activer
+
+    /*
+    sceneModule->CreateScene<TDS::TopDownShooter>();
+    sceneModule->CreateScene<DTS::DTSScene>();
+    */
+
+    sceneModule->CreateScene<TETRIS::TetrisScene>();
+
 
 
     engine->Run();

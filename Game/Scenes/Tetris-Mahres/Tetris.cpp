@@ -1,4 +1,4 @@
-﻿#include "DTScene.h"
+#include "Tetris.h"
 
 #include <chrono>
 #include <cstdint>
@@ -10,18 +10,17 @@
 #include "SquareCollider.h"
 #include "Texture.h"
 #include "WindowModule.h"
-#include "A_DTS/PlayerDTS.h"
-#include "A_DTS/DTSMap.h"
+
+#include "Tetris-Mahres/PlayerTetris.h"
 
 
-
-DTS::DTSScene::DTSScene(): Scene("DTS")
+TETRIS::TetrisScene::TetrisScene() : Scene("Tetris")
 {
     AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
-    Texture* playerTexture = assets_module->LoadAsset<Texture>("maincharacter.png");
+    Texture* playerTexture = assets_module->LoadAsset<Texture>("Rectangle.png");
 
     GameObject* const& playerObject = CreateGameObject("Player");
     playerObject->CreateComponent<SpriteRenderer>(playerTexture);
-    playerObject->CreateComponent<DTS::Player>();
+    playerObject->CreateComponent<TETRIS::Player>();
 
 }

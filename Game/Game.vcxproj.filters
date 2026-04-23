@@ -27,10 +27,10 @@
     <ClCompile Include="Scenes\A_DTS\DTScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\A_DTS\DTSMap.cpp">
+    <ClCompile Include="Scenes\TDS\TDS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\TDS\TDS.cpp">
+    <ClCompile Include="Scenes\Tetris-Mahres\Tetris.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,7 +50,7 @@
     <ClInclude Include="include\A_DTS\ProjectilesDTS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\A_DTS\DTSMap.h">
+    <ClInclude Include="include\A_DTS\DTSMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Scenes\TDS\TDS.h">
@@ -69,6 +69,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\TDS\Health.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Tetris-Mahres\PlayerTetris.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scenes\Tetris-Mahres\Tetris.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
