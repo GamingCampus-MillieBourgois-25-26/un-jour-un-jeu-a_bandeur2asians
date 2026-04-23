@@ -9,8 +9,10 @@ namespace TETRIS
     public:
         TetrisScene();
 
-        float minSize = 100.f;
-        float maxSize = 300.f;
+
+    private:
+		void SpawnPiece();
+
     };
 }
 
