@@ -34,5 +34,6 @@
     <ClInclude Include="include\Bullet-L\Bullets.h" />
     <ClInclude Include="Scenes\Bullet-L\BulletHell-M.h" />
     <ClInclude Include="include\Bullet-L\OppsTank.h" />
+    <ClInclude Include="include\Bullet-L\Life.h" />
   </ItemGroup>
 </Project>

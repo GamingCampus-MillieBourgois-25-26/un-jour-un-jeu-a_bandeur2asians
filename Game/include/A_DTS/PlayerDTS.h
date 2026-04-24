@@ -36,7 +36,6 @@ namespace DTS
 
             GetOwner()->SetPosition(position);
 
-
             Maths::Vector2i mousePos = InputModule::GetMousePosition();
             float dx = static_cast<float>(mousePos.x) - position.x;
             float dy = static_cast<float>(mousePos.y) - position.y;

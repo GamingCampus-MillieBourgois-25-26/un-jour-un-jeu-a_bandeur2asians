@@ -107,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Bullet-L\Bullets.h" />
+    <ClInclude Include="include\Bullet-L\Life.h" />
     <ClInclude Include="include\Bullet-L\OppsTank.h" />
     <ClInclude Include="include\Bullet-L\PlayerBulletHell.h" />
     <ClInclude Include="include\TDS\Background.h" />

@@ -9,7 +9,7 @@
 #include "SpriteRenderer.h"
 #include "Texture.h"
 #include "Bullets.h"
-//#include "Health.h"
+#include "Life.h"
 
 namespace HELL
 {
@@ -22,61 +22,66 @@ namespace HELL
         TANK5
     };
 
-    class Opps
+    class Opps : public Component
     {
+    public:
+        float speed = 35.f;
+        float detectionRadius = 400.f;
+        float fireRate = 1.f;
+
     private:
-        float x, y;
-        OppsType type;
-        std::optional<sf::Sprite> sprite;
-        int health;  // Points de vie de l'ennemi
+        float m_fireTimer = 0.f;
 
-        // Comportement
-        sf::Clock shootClock;
-        float moveTimer;
-
-        // Textures statiques
-        static sf::Texture textureTank1;
-        static sf::Texture textureTank2;
-        static sf::Texture textureTank3;
-        static sf::Texture textureTank4;
-        static sf::Texture textureTank5;
-
-        static bool texturesLoaded;
+        GameObject* FindPlayer()
+        {
+            auto& objects = GetOwner()->GetScene()->GetGameObjects();
+            for (auto& go : objects)
+                if (go->GetName() == "Player")
+                    return go.get();
+            return nullptr;
+        }
 
     public:
-        Opps(float startX, float startY, OppsType type);
+        void Update(const float _delta_time) override
+        {
+            
 
-        void update(float playerX, float playerY, Projectile& projectileManager);
-        void draw(sf::RenderWindow& window);
+            GameObject* player = FindPlayer();
+            if (!player) return;
 
-        sf::Vector2f getPosition() const;
-        sf::FloatRect getBounds() const;
-        sf::FloatRect getHitbox() const;
-        OppsType getType() const;
+            Maths::Vector2f myPos = GetOwner()->GetPosition();
+            Maths::Vector2f playerPos = player->GetPosition();
 
-        
-        int getHealth() const { return health; }
-        void takeDamage(int damage);
-        bool isAlive() const { return health > 0; }
+            float dx = playerPos.x - myPos.x;
+            float dy = playerPos.y - myPos.y;
+            float dist = std::sqrt(dx * dx + dy * dy);
 
-        
-        static void loadTextures();
-    };
+            if (dist > detectionRadius) return;
 
-    class ProjectileManager
-    {
-    private:
-        std::vector<Projectile> projectiles;
+            float nx = dx / dist;
+            float ny = dy / dist;
 
-    public:
-        ProjectileManager();
+            GetOwner()->SetRotation(sf::degrees(std::atan2(dy, dx) * (180.f / 3.14159f)));
 
-        // Nouvelle signature avec speedX et speedY
-        void addProjectile(float x, float y, Projectile type, float speedX = 0.0f, float speedY = -5.0f);
-        void update();
-        void draw(sf::RenderWindow& window);
-        std::vector<Projectile>& getProjectiles();
-        void removeProjectile(size_t index);
+            Maths::Vector2f newPos = myPos;
+            newPos.x += nx * speed * _delta_time;
+            newPos.y += ny * speed * _delta_time;
+            GetOwner()->SetPosition(newPos);
+
+            m_fireTimer += _delta_time;
+            if (m_fireTimer >= fireRate)
+            {
+                m_fireTimer = 0.f;
+
+                AssetsModule* am = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
+                Texture* tex = am->LoadAsset<Texture>("TankBullet.png");
+
+                GameObject* projectile = GetOwner()->GetScene()->CreateGameObject("Enemy");
+                projectile->SetPosition(myPos);
+                projectile->CreateComponent<SpriteRenderer>(tex);
+                projectile->CreateComponent<Projectile>(sf::radians(std::atan2(dy, dx)));
+            }
+        }
     };
 
 }

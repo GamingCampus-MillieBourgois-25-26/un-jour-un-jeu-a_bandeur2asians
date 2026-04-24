@@ -10,7 +10,7 @@ namespace HELL
         sf::Angle angle;
     public:
         Projectile(sf::Angle a) { angle = a; }
-        float speed = 400;
+        float speed = 50.0f;
 
         void Update(const float _delta_time) override
         {
