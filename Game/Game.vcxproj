@@ -99,12 +99,16 @@
     <ClCompile Include="include\Demo\TileSpawner.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scenes\A_DTS\DTScene.cpp" />
+    <ClCompile Include="Scenes\Bullet-L\BulletHell-M.cpp" />
     <ClCompile Include="Scenes\Demo\DemoScene.cpp" />
     <ClCompile Include="Scenes\TDS\TDS.cpp" />
     <ClCompile Include="Scenes\Tetris-Mahres\Tetris.cpp" />
     <ClCompile Include="Scenes\TETRIS_Nolan\Tetris.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Bullet-L\Bullets.h" />
+    <ClInclude Include="include\Bullet-L\OppsTank.h" />
+    <ClInclude Include="include\Bullet-L\PlayerBulletHell.h" />
     <ClInclude Include="include\TDS\Background.h" />
     <ClInclude Include="include\A_DTS\PlayerDTS.h" />
     <ClInclude Include="include\A_DTS\ProjectilesDTS.h" />
@@ -119,6 +123,7 @@
     <ClInclude Include="include\A_DTS\DTSMap.h" />
     <ClInclude Include="Scenes\A_DTS\DTSMap.h" />
     <ClInclude Include="include\Demo\TileSpawner.h" />
+    <ClInclude Include="Scenes\Bullet-L\BulletHell-M.h" />
     <ClInclude Include="Scenes\Demo\DemoScene.h" />
     <ClInclude Include="Scenes\TDS\TDS.h" />
     <ClInclude Include="Scenes\Tetris-Mahres\Tetris.h" />

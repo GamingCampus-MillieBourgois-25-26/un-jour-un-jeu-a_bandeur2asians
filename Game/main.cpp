@@ -4,6 +4,8 @@
 #include "Scenes/TDS/TDS.h"
 #include "Scenes/TETRIS_Nolan/Tetris.h"
 #include "Scenes/Tetris-Mahres/Tetris.h"
+#include "Scenes/Bullet-L/BulletHell-M.h"
+
 
 
 int main(const int _argc, const char** _argv)
@@ -16,14 +18,15 @@ int main(const int _argc, const char** _argv)
 
     // Crée toutes les scènes sans les activer
 
-    /*
-    sceneModule->CreateScene<TDS::TopDownShooter>();
-    sceneModule->CreateScene<DTS::DTSScene>();
-    */
-     
-    sceneModule->CreateScene<TETRIS::TetrisScene>();
     
-    //engine->GetModuleManager()->GetModule<SceneModule>()->SetScene<Tetris_Nolan::TetrisScene>();
+   // sceneModule->CreateScene<TDS::TopDownShooter>();
+   //sceneModule->CreateScene<DTS::DTSScene>();
+
+   //sceneModule->CreateScene<TETRIS::TetrisScene>();
+   //engine->GetModuleManager()->GetModule<SceneModule>()->SetScene<Tetris_Nolan::TetrisScene>();
+
+   sceneModule->CreateScene<HELL::HELLScene>();
+
 
 
     engine->Run();

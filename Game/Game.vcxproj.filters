@@ -9,6 +9,7 @@
     <ClCompile Include="Scenes\TDS\TDS.cpp" />
     <ClCompile Include="Scenes\TETRIS_Nolan\Tetris.cpp" />
     <ClCompile Include="Scenes\Tetris-Mahres\Tetris.cpp" />
+    <ClCompile Include="Scenes\Bullet-L\BulletHell-M.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\TDS\Background.h" />
@@ -29,5 +30,9 @@
     <ClInclude Include="Scenes\TETRIS_Nolan\Tetris.h" />
     <ClInclude Include="include\Tetris-Mahres\PlayerTetris.h" />
     <ClInclude Include="Scenes\Tetris-Mahres\Tetris.h" />
+    <ClInclude Include="include\Bullet-L\PlayerBulletHell.h" />
+    <ClInclude Include="include\Bullet-L\Bullets.h" />
+    <ClInclude Include="Scenes\Bullet-L\BulletHell-M.h" />
+    <ClInclude Include="include\Bullet-L\OppsTank.h" />
   </ItemGroup>
 </Project>
