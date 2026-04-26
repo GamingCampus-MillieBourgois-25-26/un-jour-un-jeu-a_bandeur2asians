@@ -3,11 +3,6 @@
 #include <memory>
 #include "Core/Scene.h"
 
-GameObject::~GameObject()
-{
-    components.clear();
-}
-
 std::string GameObject::GetName() const {
     return name;
 }
@@ -65,6 +60,9 @@ void GameObject::Update(const float _delta_time) const
 {
     for (const auto& component : components)
     {
+        if (!component->IsEnabled() || component->IsMarkedForDeletion())
+            continue;
+
         component->Update(_delta_time);
     }
 }
@@ -73,6 +71,9 @@ void GameObject::PreRender() const
 {
     for (const auto& component : components)
     {
+        if (!component->IsEnabled() || component->IsMarkedForDeletion())
+            continue;
+
         component->PreRender();
     }
 }
@@ -81,6 +82,9 @@ void GameObject::Render(sf::RenderWindow* _window) const
 {
     for (const auto& component : components)
     {
+        if (!component->IsEnabled() || component->IsMarkedForDeletion())
+            continue;
+
         component->Render(_window);
     }
 }
@@ -89,6 +93,9 @@ void GameObject::OnGUI() const
 {
     for (const auto& component : components)
     {
+        if (!component->IsEnabled() || component->IsMarkedForDeletion())
+            continue;
+
         component->OnGUI();
     }
 }
@@ -97,6 +104,9 @@ void GameObject::PostRender() const
 {
     for (const auto& component : components)
     {
+        if (!component->IsEnabled() || component->IsMarkedForDeletion())
+            continue;
+
         component->PostRender();
     }
 }
@@ -105,6 +115,9 @@ void GameObject::OnDebug() const
 {
     for (const auto& component : components)
     {
+        if (!component->IsEnabled() || component->IsMarkedForDeletion())
+            continue;
+
         component->OnDebug();
     }
 }
@@ -113,6 +126,9 @@ void GameObject::OnDebugSelected() const
 {
     for (const auto& component : components)
     {
+        if (!component->IsEnabled() || component->IsMarkedForDeletion())
+            continue;
+
         component->OnDebugSelected();
     }
 }
@@ -125,6 +141,36 @@ void GameObject::Present()
     }
 
     DeleteMarkedComponents();
+
+    for (auto& component : pendingComponents)
+    {
+        if (component->IsMarkedForDeletion())
+        {
+            component->Destroy();
+            component->Finalize();
+            continue;
+        }
+
+        component->Start();
+        components.push_back(std::move(component));
+    }
+    pendingComponents.clear();
+}
+
+void GameObject::FlushPending()
+{
+    for (auto& component : pendingComponents)
+    {
+        if (component->IsMarkedForDeletion())
+        {
+            component->Destroy();
+            component->Finalize();
+            continue;
+        }
+
+        components.push_back(std::move(component));
+    }
+    pendingComponents.clear();
 }
 
 void GameObject::OnEnable() const
@@ -149,14 +195,27 @@ void GameObject::Destroy() const
     {
         component->Destroy();
     }
+
+    for (const auto& component : pendingComponents)
+    {
+        component->Destroy();
+    }
 }
 
-void GameObject::Finalize() const
+void GameObject::Finalize()
 {
     for (const auto& component : components)
     {
         component->Finalize();
     }
+
+    for (const auto& component : pendingComponents)
+    {
+        component->Finalize();
+    }
+    pendingComponents.clear();
+
+    DeleteMarkedComponents();
 }
 
 void GameObject::Enable()
@@ -185,6 +244,13 @@ bool GameObject::IsEnabled() const
 void GameObject::MarkForDeletion()
 {
     Disable();
+
+    for (const auto& component : components)
+        component->MarkForDeletion();
+
+    for (const auto& component : pendingComponents)
+        component->MarkForDeletion();
+
     markedForDeletion = true;
 }
 

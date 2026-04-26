@@ -1,8 +1,13 @@
 #pragma once
+
+#include "Bullets.h"
+
 #include "Core/Component.h"
 #include "InputModule.h"
 
-namespace Demo
+#include <cmath>
+
+namespace HELL
 {
     class Player : public Component
     {
@@ -29,14 +34,19 @@ namespace Demo
                 position.y += speed * _delta_time;
             }
 
-            GetOwner()->SetPosition(position);
-
-            if (InputModule::GetKeyDown(sf::Keyboard::Key::Escape))
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
             {
-                Engine::GetInstance()->RequestQuit();
+                AssetsModule* assets_module = Engine::GetInstance()->GetModuleManager()->GetModule<AssetsModule>();
+                Texture* projectile_texture = assets_module->LoadAsset<Texture>("TankBulletPlayer.png");
+
+                GameObject* projectile = GetOwner()->GetScene()->CreateGameObject("Projectile");
+                projectile->SetPosition(position);
+                projectile->CreateComponent<SpriteRenderer>(projectile_texture);
+                projectile->CreateComponent<Projectile>(sf::degrees(0.f));
             }
+            GetOwner()->SetPosition(position);
         }
 
-        float speed = 100.0f;
+        float speed = 300.0f;
     };
 }
